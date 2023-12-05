@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="canvas">#F7E7CE</color>
+    <color name="sea_green">#8BD8BD</color>
+    <color name="ocean_blue">#243665</color>
+</resources>

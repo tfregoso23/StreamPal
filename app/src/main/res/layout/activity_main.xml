@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="@color/ocean_blue">
+
+    <TextView
+        android:id="@+id/welcomeMessage"
+        android:layout_width="402dp"
+        android:layout_height="96dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="4dp"
+        android:gravity="center"
+        android:text="Welcome"
+        android:textColor="@color/sea_green"
+        android:textSize="55sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:layout_width="340dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="68dp"
+        android:text="My Watchlist"
+        android:textColor="@color/ocean_blue"
+        android:textSize="40sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/welcomeMessage"
+        android:id="@+id/watchlist_button"
+        />
+
+    <Button
+        android:id="@+id/search_button"
+        android:layout_width="341dp"
+        android:layout_height="82dp"
+        android:layout_marginTop="68dp"
+        android:text="Search"
+        android:textColor="@color/ocean_blue"
+        android:textSize="40sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/watchlist_button" />
+
+    <Button
+        android:id="@+id/logout_button"
+        android:layout_width="113dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="168dp"
+        android:text="Logout"
+        android:textColor="@color/ocean_blue"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.101"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/search_button" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
