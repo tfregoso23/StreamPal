@@ -37,20 +37,6 @@ public class MainActivity extends AppCompatActivity {
 
         getDatabase();
 
-
-        /**
-         * TODO Watch vid where he sets up database and insert it here
-         * Check in with chat gpt and ask if youre doing it okay
-         * Get better ecs
-         * Try to hook eveyrhting up youself and see'
-         *Maybe do this on a different branch
-         *
-         * What you want rn is To use intents to login with proper credentials and make sure
-         * that each user has their own list
-         * You also want to look into the method of signing up.. and maybe using some of these steps to accomplish that
-         * Also dpnt fprget checks like (does usernbame already exist etc)
-         */
-
         checkForUser();
 
         loginUser(mUserId);
