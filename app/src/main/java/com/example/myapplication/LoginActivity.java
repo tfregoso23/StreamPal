@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplication.db.AppDatabase;
@@ -19,8 +20,11 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText mUsernameField;
     private EditText mPasswordField;
+    private TextView mSignUpClickText;
 
     private Button mLoginButton;
+
+
 
     private UserDAO mUserDAO;
 
@@ -44,6 +48,7 @@ public class LoginActivity extends AppCompatActivity {
         mUsernameField = findViewById(R.id.login_username_edittext);
         mPasswordField = findViewById(R.id.login_password_edittext);
         mLoginButton = findViewById(R.id.login_button);
+        mSignUpClickText = findViewById(R.id.signup_clickable_text);
 
         mLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,6 +63,14 @@ public class LoginActivity extends AppCompatActivity {
                         startActivity(intent);
                     }
                 };
+            }
+        });
+
+        mSignUpClickText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = SignupActivity.intentFactory(getApplicationContext());
+                startActivity(intent);
             }
         });
 

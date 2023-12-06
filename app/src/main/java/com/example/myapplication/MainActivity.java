@@ -1,11 +1,13 @@
 package com.example.myapplication;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
 //import android.app.Activity;
 //import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 
 import android.content.SharedPreferences;
@@ -13,6 +15,9 @@ import android.os.Bundle;
 
 import com.example.myapplication.db.UserDAO;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.myapplication.db.AppDatabase;
 
@@ -29,18 +34,48 @@ public class MainActivity extends AppCompatActivity {
     private User mUser;
     private SharedPreferences mPreferences = null;
 
+    private Button mLogoutButton;
+    private Button mAdminButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        wireUpDisplay();
+
         getDatabase();
 
         checkForUser();
 
         loginUser(mUserId);
+        mAdminButton = findViewById(R.id.admin_button);
 
+        if(mUser.isAdmin()){
+            mAdminButton.setVisibility(View.VISIBLE);
+        }
+        else
+            mAdminButton.setVisibility(View.GONE);
+
+        String username = mUser.getUsername().toString(); // Replace this with the actual username variable
+
+        // Set the text of the TextView to the username
+        TextView usernameTextView = findViewById(R.id.username_display_textview);
+        usernameTextView.setText(username);
+    }
+
+
+    private void wireUpDisplay() {
+        mLogoutButton = findViewById(R.id.logout_button);
+
+        mLogoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("loggingOut","loggedOut");
+                logoutUser();
+            }
+        });
     }
 
     private void checkForUser() {
@@ -75,12 +110,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-//    private void logoutUser(){
-//        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
-//
-//        alertBuilder.setMessage(R.string.logout);
-//    }
-
 
     public static Intent intentFactory(Context context, int userId){
         Intent intent = new Intent(context, MainActivity.class);
@@ -105,6 +134,31 @@ public class MainActivity extends AppCompatActivity {
         addUserToPreference(userId);
         invalidateOptionsMenu();
     }
+
+    private void logoutUser(){
+        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
+
+        alertBuilder.setMessage("Logout?");
+
+        alertBuilder.setPositiveButton("Yes",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        clearUserFromIntent();
+                        clearUserFromPref();
+                        mUserId = -1;
+                        checkForUser();
+                    }
+                });
+        alertBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
+        alertBuilder.create().show();
+    }
+
     private void addUserToPreference(int userId) {
         if (mPreferences == null) {
             getPrefs();
@@ -116,6 +170,14 @@ public class MainActivity extends AppCompatActivity {
 
     private void getPrefs() {
         mPreferences = this.getSharedPreferences(PREFERENCES_KEY, Context.MODE_PRIVATE);
+    }
+
+    private void clearUserFromIntent(){
+        getIntent().putExtra(USER_ID_KEY,-1);
+    }
+
+    private void clearUserFromPref(){
+        addUserToPreference(-1);
     }
 
 }
