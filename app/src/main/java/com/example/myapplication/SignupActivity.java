@@ -77,6 +77,7 @@ public class SignupActivity extends AppCompatActivity {
     private void registerUser() {
         User newUser = new User(mNewUsername,mNewPassword,false);
         mUserDAO.insert(newUser);
+
         Intent intent = MainActivity.intentFactory(getApplicationContext(),newUser.getUserId());
         startActivity(intent);
     }
@@ -114,7 +115,6 @@ public class SignupActivity extends AppCompatActivity {
     }
     public static Intent intentFactory(Context context){
         Intent intent = new Intent(context, SignupActivity.class);
-
         return intent;
     }
 }

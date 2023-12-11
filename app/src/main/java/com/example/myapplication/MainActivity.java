@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Button mLogoutButton;
     private Button mAdminButton;
+    private Button mSearchButton;
 
 
     @Override
@@ -52,17 +53,19 @@ public class MainActivity extends AppCompatActivity {
         loginUser(mUserId);
         mAdminButton = findViewById(R.id.admin_button);
 
-        if(mUser.isAdmin()){
+        if (mUser != null && mUser.isAdmin()) {
             mAdminButton.setVisibility(View.VISIBLE);
-        }
-        else
+        } else {
             mAdminButton.setVisibility(View.GONE);
+        }
 
-        String username = mUser.getUsername().toString(); // Replace this with the actual username variable
+        if (mUser != null) {
+            String username = mUser.getUsername().toString();
 
-        // Set the text of the TextView to the username
-        TextView usernameTextView = findViewById(R.id.username_display_textview);
-        usernameTextView.setText(username);
+            // Set the text of the TextView to the username
+            TextView usernameTextView = findViewById(R.id.username_display_textview);
+            usernameTextView.setText(username);
+        }
     }
 
 
@@ -74,6 +77,16 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Log.d("loggingOut","loggedOut");
                 logoutUser();
+            }
+        });
+
+        mSearchButton = findViewById(R.id.search_movies_button);
+        mSearchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("SEARCH","searching button");
+                Intent intent = SearchActivity.intentFactory(getApplicationContext());
+                startActivity(intent);
             }
         });
     }

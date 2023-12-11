@@ -1,4 +1,18 @@
 <resources>
     <string name="app_name">My Application</string>
     <string name="login">" Login"</string>
+    <string name="sign_up">Sign Up!</string>
+    <string name="enter_username">Enter Username</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="sign_in">Sign In</string>
+    <string name="my_watchlist">My Watchlist</string>
+    <string name="search">Search</string>
+    <string name="logout">Logout</string>
+    <string name="admin">Admin</string>
+    <string name="user">User</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="streampal">StreamPal</string>
+    <string name="search_for_a_title">Search for a title!</string>
 </resources>
