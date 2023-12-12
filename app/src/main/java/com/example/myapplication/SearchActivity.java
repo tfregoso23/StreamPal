@@ -5,36 +5,53 @@ import androidx.room.Room;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplication.db.AppDatabase;
 import com.example.myapplication.db.MovieDAO;
+import com.example.myapplication.db.WatchlistDAO;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class SearchActivity extends AppCompatActivity {
+    private MovieDAO mMovieDAO;
+    private WatchlistDAO mWatchlistDAO;
 
     private AutoCompleteTextView mSearchBar;
-    private MovieDAO mMovieDAO;
+
     private Button mSearchForMovieButton;
     private Button mAddMovieButton;
+
+    private ImageView mBackArrow;
 
     private TextView mTitleTextView;
     private TextView mYearTextView;
     private TextView mGenretextView;
     private TextView mPlatformTextView;
+//    private ExecutorService databaseExecutor = Executors.newSingleThreadExecutor();
+
+    private int userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+
+        SharedPreferences sharedPreferences = getSharedPreferences("com.example.myapplication.PREFERENCES_KEY", MODE_PRIVATE);
+        userId = sharedPreferences.getInt("com.example.myapplication.userIdKey", -1); // -1 as default value if not found
+
         getDatabase();
         checkForMovies();
 
@@ -57,6 +74,10 @@ public class SearchActivity extends AppCompatActivity {
         mPlatformTextView = findViewById(R.id.platform_textview);
         mAddMovieButton = findViewById(R.id.add_movie_button);
 
+
+
+
+
         mSearchForMovieButton = findViewById(R.id.search_this_movie_button);
         mSearchForMovieButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,11 +93,30 @@ public class SearchActivity extends AppCompatActivity {
             }
         });
 
+        mAddMovieButton = findViewById(R.id.add_movie_button);
+        mAddMovieButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addMovieToWatchlist();
+            }
+        });
+
+        mBackArrow = findViewById(R.id.search_back_arrow_imageview);
+
+        mBackArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
     }
 
     private void getDatabase() {
         mMovieDAO = Room.databaseBuilder(this, AppDatabase.class, AppDatabase.DB_NAME)
                 .allowMainThreadQueries().build().getMovieDAO();
+        mWatchlistDAO = Room.databaseBuilder(this, AppDatabase.class, AppDatabase.DB_NAME)
+                .allowMainThreadQueries().build().getWatchlistDAO();
     }
 
     private void checkForMovies(){
@@ -92,6 +132,24 @@ public class SearchActivity extends AppCompatActivity {
                 }
             }
         }
+    }
+
+    private void addMovieToWatchlist(){
+        Movie movie = mMovieDAO.getMovieByTitle(mSearchBar.getText().toString());
+        int movieId = movie.getMovieId();
+
+        Watchlist existingEntry = mWatchlistDAO.getWatchlistMovie(userId, movieId);
+        if (existingEntry == null) {
+            // Movie is not in the watchlist, add it
+            Watchlist newEntry = new Watchlist(userId, movieId);
+            mWatchlistDAO.insert(newEntry);
+            Toast.makeText(this, "Movie added to watchlist", Toast.LENGTH_SHORT).show();
+        } else {
+            // Movie is already in the watchlist
+            Toast.makeText(this, "Movie is already in your watchlist", Toast.LENGTH_SHORT).show();
+        }
+
+
     }
 
     private void displayMovieInfo(Movie movie){
