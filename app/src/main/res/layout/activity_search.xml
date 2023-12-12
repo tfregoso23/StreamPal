@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SearchActivity"
-    android:background="@color/ocean_blue">
+    android:background="@color/ocean_blue"
+    tools:context=".SearchActivity">
 
     <TextView
         android:id="@+id/search_bold_textview"
@@ -19,8 +19,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/search_for_title_textview"
@@ -48,6 +47,7 @@
         app:layout_constraintTop_toBottomOf="@+id/search_for_title_textview" />
 
     <Button
+        android:id="@+id/search_this_movie_button"
         android:layout_width="120dp"
         android:layout_height="52dp"
         android:layout_marginTop="36dp"
@@ -58,20 +58,70 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/search_bar_autotextview" />
 
+    <TextView
+        android:id="@+id/title_textview"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Title: "
+        android:textColor="@color/sea_green"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.044"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/search_this_movie_button" />
 
-    <!--    <EditText-->
-<!--        android:layout_width="333dp"-->
-<!--        android:layout_height="59dp"-->
-<!--        android:layout_marginTop="64dp"-->
-<!--        android:textSize="20sp"-->
-<!--        android:textColor="@color/sea_green"-->
-<!--        android:background="@android:color/transparent"-->
-<!--        android:hint="Search for a movie"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/search_for_title_textview" />-->
+    <TextView
+        android:id="@+id/year_textview"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:text="Year: "
+        android:textColor="@color/sea_green"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_textview" />
 
+    <TextView
+        android:id="@+id/platform_textview"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:text="Platform: "
+        android:textColor="@color/sea_green"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/genre_textview" />
 
+    <TextView
+        android:id="@+id/genre_textview"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:text="Genre: "
+        android:textColor="@color/sea_green"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/year_textview" />
+
+    <Button
+        android:id="@+id/add_movie_button"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="28dp"
+        android:text="+ Add Movie"
+        android:textColor="@color/ocean_blue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
