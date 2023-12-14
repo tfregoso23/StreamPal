@@ -28,43 +28,5 @@ public abstract class AppDatabase extends RoomDatabase{
     public abstract MovieDAO getMovieDAO();
     public abstract WatchlistDAO getWatchlistDAO();
 
-//    private static volatile AppDatabase INSTANCE;
-//
-//    public static AppDatabase getDatabase(final Context context) {
-//        if (INSTANCE == null) {
-//            synchronized (AppDatabase.class) {
-//                if (INSTANCE == null) {
-//                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-//                                    AppDatabase.class, "movie_database")
-//                            .addCallback(sRoomDatabaseCallback)
-//                            .build();
-//                }
-//            }
-//        }
-//        return INSTANCE;
-//    }
-//
-//    private static RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback() {
-//        @Override
-//        public void onCreate(@NonNull SupportSQLiteDatabase db) {
-//            super.onCreate(db);
-//
-//            // Create a new thread to perform database operations
-//            new Thread(new Runnable() {
-//                @Override
-//                public void run() {
-//                    // Get the DAO
-//                    MovieDAO dao = INSTANCE.getMovieDAO();
-//
-//                    // Insert the hardcoded list of movies
-//                    List<Movie> movies = new ArrayList<>();
-//                    movies.add(new Movie("Movie 1", 2022, "Genre 1", StreamingPlatform.APPLE_TV));
-//                    movies.add(new Movie("Movie 2", 2022, "Genre 2", StreamingPlatform.DISNEY_PLUS));
-//                    // Add more movies as needed
-//
-//                    dao.insertAll(movies);
-//                }
-//            }).start();
-//        }
-//};
+
 }

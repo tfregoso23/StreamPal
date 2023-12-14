@@ -25,25 +25,24 @@
 
     <Button
         android:id="@+id/watchlist_button"
-        android:layout_width="340dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="64dp"
+        android:layout_width="295dp"
+        android:layout_height="77dp"
+        android:layout_marginTop="56dp"
         android:text="@string/my_watchlist"
         android:textColor="@color/ocean_blue"
-        android:textSize="40sp"
+        android:textSize="35sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/streampal_textview" />
 
     <Button
         android:id="@+id/search_movies_button"
-        android:layout_width="341dp"
-        android:layout_height="82dp"
+        android:layout_width="295dp"
+        android:layout_height="77dp"
         android:layout_marginTop="56dp"
         android:text="@string/search"
         android:textColor="@color/ocean_blue"
-        android:textSize="40sp"
+        android:textSize="35sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/watchlist_button" />
@@ -52,7 +51,7 @@
         android:id="@+id/logout_button"
         android:layout_width="113dp"
         android:layout_height="51dp"
-        android:layout_marginTop="184dp"
+        android:layout_marginTop="192dp"
         android:text="@string/logout"
         android:textColor="@color/ocean_blue"
         android:textSize="15sp"
@@ -63,12 +62,12 @@
 
     <Button
         android:id="@+id/admin_button"
-        android:layout_width="340dp"
-        android:layout_height="80dp"
+        android:layout_width="295dp"
+        android:layout_height="77dp"
         android:layout_marginTop="56dp"
         android:text="@string/admin"
         android:textColor="@color/ocean_blue"
-        android:textSize="40sp"
+        android:textSize="35sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"

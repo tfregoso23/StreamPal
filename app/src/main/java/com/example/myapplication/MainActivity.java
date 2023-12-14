@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private Button mLogoutButton;
     private Button mAdminButton;
     private Button mSearchButton;
+    private Button mWatchlistButton;
 
 
     @Override
@@ -89,6 +90,18 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        mWatchlistButton = findViewById(R.id.watchlist_button);
+        mWatchlistButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("WATCHLIST","Watchlist button");
+                Intent intent = WatchlistActivity.intentFactory(getApplicationContext());
+                startActivity(intent);
+            }
+        });
+
+
     }
 
     private void checkForUser() {
