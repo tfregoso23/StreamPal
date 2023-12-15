@@ -7,6 +7,7 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 import com.example.myapplication.Movie;
+import com.example.myapplication.StreamingPlatform;
 
 import java.util.List;
 
@@ -20,6 +21,9 @@ public interface MovieDAO {
 
     @Update
     void update(Movie... movies);
+
+    @Query("UPDATE movies SET mPlatform = :platform WHERE mMovieTitle = :title")
+    void updateMoviePlatform(String title, StreamingPlatform platform);
 
     @Delete
     void delete(Movie... movie);

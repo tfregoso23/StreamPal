@@ -4,16 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/ocean_blue"
-    tools:context=".SearchActivity">
-
+    tools:context=".UpdateTitleActivity"
+    android:background="@color/ocean_blue">
 
     <TextView
-        android:id="@+id/search_bold_textview"
+        android:id="@+id/update_bold_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
-        android:text="@string/search"
+        android:text="Update"
         android:textColor="@color/sea_green"
         android:textSize="50sp"
         android:textStyle="bold"
@@ -23,19 +22,19 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/search_for_title_textview"
+        android:id="@+id/update_a_title_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="@string/search_for_a_title"
+        android:text="Update a title!"
         android:textColor="@color/sea_green"
         android:textSize="35sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search_bold_textview" />
+        app:layout_constraintTop_toBottomOf="@+id/update_bold_textview" />
 
     <AutoCompleteTextView
-        android:id="@+id/search_bar_autotextview"
+        android:id="@+id/update_search_bar_autotextview"
         android:layout_width="342dp"
         android:layout_height="68dp"
         android:layout_marginTop="56dp"
@@ -45,10 +44,10 @@
         android:hint="Search for movies"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search_for_title_textview" />
+        app:layout_constraintTop_toBottomOf="@+id/update_a_title_textview" />
 
     <Button
-        android:id="@+id/search_this_movie_button"
+        android:id="@+id/search_this_update_movie_button"
         android:layout_width="120dp"
         android:layout_height="52dp"
         android:layout_marginTop="36dp"
@@ -57,74 +56,76 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search_bar_autotextview" />
+        app:layout_constraintTop_toBottomOf="@+id/update_search_bar_autotextview"/>
 
     <TextView
-        android:id="@+id/title_textview"
+        android:id="@+id/update_title_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="44dp"
         android:text="Title: "
         android:textColor="@color/sea_green"
-        android:textSize="20sp"
+        android:textSize="25sp"
+        android:textStyle="bold"
         android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search_this_movie_button" />
+        app:layout_constraintTop_toBottomOf="@+id/search_this_update_movie_button" />
 
     <TextView
-        android:id="@+id/year_textview"
+        android:id="@+id/current_platform_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:text="Platform"
+        android:textColor="@color/sea_green"
+        android:textSize="25sp"
+        android:textStyle="bold"
         android:visibility="invisible"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
-        android:text="Year: "
-        android:textColor="@color/sea_green"
-        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_textview" />
+        app:layout_constraintTop_toBottomOf="@+id/update_title_textview" />
 
     <TextView
-        android:id="@+id/platform_textview"
-        android:visibility="gone"
+        android:id="@+id/update_invisible_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
-        android:text="Platform: "
-        android:textColor="@color/sea_green"
+        android:layout_marginBottom="8dp"
+        android:text="Update platform:"
         android:textSize="20sp"
+        android:textColor="@color/sea_green"
+        app:layout_constraintBottom_toTopOf="@+id/select_platform_update_spinner"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/genre_textview" />
+        android:visibility="invisible"/>
 
-    <TextView
-        android:id="@+id/genre_textview"
-        android:visibility="gone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
-        android:text="Genre: "
-        android:textColor="@color/sea_green"
-        android:textSize="20sp"
+    <Spinner
+        android:id="@+id/select_platform_update_spinner"
+        android:layout_width="176dp"
+        android:layout_height="49dp"
+        android:layout_marginBottom="72dp"
+        android:background="@color/white"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.068"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/year_textview" />
+        />
 
     <Button
-        android:id="@+id/add_movie_button"
-        android:visibility="gone"
+        android:id="@+id/update_platform_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="28dp"
-        android:text="+ Add Movie"
+        android:layout_marginBottom="16dp"
+        android:text="Update"
         android:textColor="@color/ocean_blue"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="invisible"/>
 
     <ImageView
-        android:id="@+id/search_back_arrow_imageview"
+        android:id="@+id/updatetitle_back_arrow_imageview"
         android:layout_width="32dp"
         android:layout_height="33dp"
         android:layout_marginStart="16dp"
@@ -133,8 +134,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:tint="@color/sea_green" />
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

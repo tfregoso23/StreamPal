@@ -6,7 +6,11 @@ import androidx.room.Room;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.StyleSpan;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -40,7 +44,6 @@ public class SearchActivity extends AppCompatActivity {
     private TextView mYearTextView;
     private TextView mGenretextView;
     private TextView mPlatformTextView;
-//    private ExecutorService databaseExecutor = Executors.newSingleThreadExecutor();
 
     private int userId;
 
@@ -155,10 +158,30 @@ public class SearchActivity extends AppCompatActivity {
     private void displayMovieInfo(Movie movie){
         StreamingPlatform platform = movie.getPlatform();
         String platformString = platform.getDisplayName();
-        mTitleTextView.setText("Title: " + movie.getMovieTitle());
-        mYearTextView.setText("Year: " + movie.getMovieYear());
-        mGenretextView.setText("Genre: " + movie.getMovieGenre());
-        mPlatformTextView.setText("Platform: " + platformString);
+
+
+        //This makes the Title: etc parts bold
+        SpannableString titleSpannable = new SpannableString("Title: " + movie.getMovieTitle());
+        titleSpannable.setSpan(new StyleSpan(Typeface.BOLD), 0, 6, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        SpannableString yearSpannable = new SpannableString("Year: " + movie.getMovieYear());
+        yearSpannable.setSpan(new StyleSpan(Typeface.BOLD), 0, 5, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        SpannableString genreSpannable = new SpannableString("Genre: " + movie.getMovieGenre());
+        genreSpannable.setSpan(new StyleSpan(Typeface.BOLD), 0, 6, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        SpannableString platformSpannable = new SpannableString("Platform: " + platformString);
+        platformSpannable.setSpan(new StyleSpan(Typeface.BOLD), 0, 9, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+
+        //Setting textview to the above defined strings
+        mTitleTextView.setText(titleSpannable);
+        mYearTextView.setText(yearSpannable);
+        mGenretextView.setText(genreSpannable);
+        mPlatformTextView.setText(platformSpannable);
+
+
+        //sets visibility to visible
         mTitleTextView.setVisibility(View.VISIBLE);
         mYearTextView.setVisibility(View.VISIBLE);
         mGenretextView.setVisibility(View.VISIBLE);

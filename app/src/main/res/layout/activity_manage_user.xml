@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ManageUserActivity"
+    android:background="@color/ocean_blue">
+
+    <TextView
+        android:id="@+id/manage_users_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:gravity="center"
+        android:text="Manage Users"
+        android:textColor="@color/sea_green"
+        android:textSize="50sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textStyle="bold"/>
+
+    <AutoCompleteTextView
+        android:id="@+id/users_search_bar_autotextview"
+        android:layout_width="342dp"
+        android:layout_height="68dp"
+        android:layout_marginTop="56dp"
+        android:background="@color/white"
+        android:completionHint="Search for users"
+        android:completionThreshold="1"
+        android:hint="Search for users"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/manage_users_textview" />
+
+    <Button
+        android:id="@+id/search_users_button"
+        android:layout_width="120dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="36dp"
+        android:text="@string/search"
+        android:textColor="@color/ocean_blue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/users_search_bar_autotextview"/>
+
+    <TextView
+        android:visibility="invisible"
+        android:id="@+id/user_found_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="72dp"
+        android:text="User found: "
+        android:textColor="@color/sea_green"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.128"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/search_users_button" />
+
+    <TextView
+        android:visibility="invisible"
+        android:id="@+id/username_found_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="164dp"
+        android:text="Username"
+        android:textColor="@color/sea_green"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/search_users_button" />
+
+    <Button
+        android:id="@+id/remove_user_button"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="16dp"
+        android:text="Remove User"
+        android:textColor="@color/ocean_blue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/manageusers_back_arrow_imageview"
+        android:layout_width="32dp"
+        android:layout_height="33dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:src="?attr/homeAsUpIndicator"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/sea_green" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

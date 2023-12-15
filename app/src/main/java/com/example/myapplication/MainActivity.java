@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         checkForUser();
 
         loginUser(mUserId);
-        mAdminButton = findViewById(R.id.admin_button);
+
 
         if (mUser != null && mUser.isAdmin()) {
             mAdminButton.setVisibility(View.VISIBLE);
@@ -97,6 +97,15 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Log.d("WATCHLIST","Watchlist button");
                 Intent intent = WatchlistActivity.intentFactory(getApplicationContext());
+                startActivity(intent);
+            }
+        });
+
+        mAdminButton = findViewById(R.id.admin_button);
+        mAdminButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = AdminPageActivity.intentFactory(getApplicationContext());
                 startActivity(intent);
             }
         });

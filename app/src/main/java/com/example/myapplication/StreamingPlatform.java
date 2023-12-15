@@ -1,14 +1,9 @@
 package com.example.myapplication;
 
+import androidx.annotation.NonNull;
+
 public enum StreamingPlatform {
-//    NETFLIX,
-//    HULU,
-//    PRIME_VIDEO,
-//    DISNEY_PLUS,
-//    HBO_MAX,
-//    TUBI,
-//    PEACOCK,
-//    PARAMOUNT_PLUS;
+
     NETFLIX("Netflix"),
     HULU("Hulu"),
     PRIME_VIDEO("Prime Video"),
@@ -16,7 +11,9 @@ public enum StreamingPlatform {
     HBO_MAX("HBO Max"),
     TUBI("Tubi"),
     PEACOCK("Peacock"),
-    PARAMOUNT_PLUS("Paramount+");
+    PARAMOUNT_PLUS("Paramount+"),
+    OTHER("Other"),
+    NONE("Not available");
 
 
     private final String displayName;
@@ -26,6 +23,12 @@ public enum StreamingPlatform {
     }
 
     public String getDisplayName() {
+        return displayName;
+    }
+
+
+    @Override
+    public String toString() {
         return displayName;
     }
 }

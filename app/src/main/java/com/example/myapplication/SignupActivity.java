@@ -76,9 +76,12 @@ public class SignupActivity extends AppCompatActivity {
 
     private void registerUser() {
         User newUser = new User(mNewUsername,mNewPassword,false);
-        mUserDAO.insert(newUser);
 
-        Intent intent = MainActivity.intentFactory(getApplicationContext(),newUser.getUserId());
+        //Use long to make sure you get the userID(this fixed my bug from going from signup to main)
+        long userId = mUserDAO.insert(newUser);
+
+        //Use long here and declare userID as an int to meet params
+        Intent intent = MainActivity.intentFactory(getApplicationContext(),(int) userId);
         startActivity(intent);
     }
 
