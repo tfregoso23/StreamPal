@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UpdateTitleActivity"
+    android:background="@color/ocean_blue">
+
+    <TextView
+        android:id="@+id/update_bold_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:text="@string/update"
+        android:textColor="@color/sea_green"
+        android:textSize="50sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/update_a_title_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/update_a_title"
+        android:textColor="@color/sea_green"
+        android:textSize="35sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/update_bold_textview" />
+
+    <AutoCompleteTextView
+        android:id="@+id/update_search_bar_autotextview"
+        android:layout_width="342dp"
+        android:layout_height="68dp"
+        android:layout_marginTop="56dp"
+        android:background="@color/white"
+        android:completionHint="Search for movies"
+        android:completionThreshold="1"
+        android:hint="@string/search_for_movies"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/update_a_title_textview" />
+
+    <Button
+        android:id="@+id/search_this_update_movie_button"
+        android:layout_width="120dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="36dp"
+        android:text="@string/search"
+        android:textColor="@color/ocean_blue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/update_search_bar_autotextview"/>
+
+    <TextView
+        android:id="@+id/update_title_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="44dp"
+        android:text="@string/title_colon"
+        android:textColor="@color/sea_green"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/search_this_update_movie_button" />
+
+    <TextView
+        android:id="@+id/current_platform_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/platform_uc"
+        android:textColor="@color/sea_green"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/update_title_textview" />
+
+    <TextView
+        android:id="@+id/update_invisible_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/update_platform"
+        android:textSize="20sp"
+        android:textColor="@color/sea_green"
+        app:layout_constraintBottom_toTopOf="@+id/select_platform_update_spinner"
+        app:layout_constraintStart_toStartOf="parent"
+        android:visibility="invisible"/>
+
+    <Spinner
+        android:id="@+id/select_platform_update_spinner"
+        android:layout_width="176dp"
+        android:layout_height="49dp"
+        android:layout_marginBottom="72dp"
+        android:background="@color/white"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.068"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+    <Button
+        android:id="@+id/update_platform_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/update"
+        android:textColor="@color/ocean_blue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="invisible"/>
+
+    <ImageView
+        android:id="@+id/updatetitle_back_arrow_imageview"
+        android:layout_width="32dp"
+        android:layout_height="33dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:src="?attr/homeAsUpIndicator"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/sea_green" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

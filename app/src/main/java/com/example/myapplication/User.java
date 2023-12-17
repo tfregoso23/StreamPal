@@ -4,6 +4,10 @@ import androidx.room.PrimaryKey;
 
 import com.example.myapplication.db.AppDatabase;
 
+/**
+ * Defines user class for user datatable
+ */
+
 @Entity(tableName = AppDatabase.USER_TABLE)
 
 public class User {
