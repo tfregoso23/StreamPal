@@ -4,6 +4,10 @@ import androidx.room.PrimaryKey;
 
 import com.example.myapplication.db.AppDatabase;
 
+/**
+ * Defines movie class for user datatable
+ */
+
 @Entity(tableName = AppDatabase.MOVIE_TABLE)
 
 public class Movie {

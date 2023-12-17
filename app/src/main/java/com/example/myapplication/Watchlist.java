@@ -7,6 +7,12 @@ import androidx.room.PrimaryKey;
 
 import com.example.myapplication.db.AppDatabase;
 
+/**
+ * Defines watchlist class for user datatable
+ * sets foreign key as user class and onDelete to cascade
+ * This is so when a user is deleted their watchlist is also deleted
+ */
+
 @Entity(tableName = AppDatabase.WATCHLIST_TABLE,foreignKeys = @ForeignKey(entity = User.class,
         parentColumns = "mUserId",
         childColumns = "mUserId",

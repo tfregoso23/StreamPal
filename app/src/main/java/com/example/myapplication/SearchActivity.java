@@ -30,6 +30,15 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class SearchActivity extends AppCompatActivity {
+
+    /**
+     * This activity handles the search for movies function
+     * It has an autocomplete textview that shows the list of movies as the user types.
+     * Once a movie is found the details are displayed and the user has the option to add the movie
+     * to their watchlist. If the movie is already in the users watchlist it alerts them.
+     */
+
+
     private MovieDAO mMovieDAO;
     private WatchlistDAO mWatchlistDAO;
 
@@ -52,15 +61,31 @@ public class SearchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
+        //Gets user ID to access their watchlist
         SharedPreferences sharedPreferences = getSharedPreferences("com.example.myapplication.PREFERENCES_KEY", MODE_PRIVATE);
         userId = sharedPreferences.getInt("com.example.myapplication.userIdKey", -1); // -1 as default value if not found
 
         getDatabase();
         checkForMovies();
+        wireupDisplay();
 
+    }
+
+    private void wireupDisplay() {
         mSearchBar = findViewById(R.id.search_bar_autotextview);
+        mTitleTextView = findViewById(R.id.title_textview);
+        mYearTextView = findViewById(R.id.year_textview);
+        mGenretextView = findViewById(R.id.genre_textview);
+        mPlatformTextView = findViewById(R.id.platform_textview);
+        mAddMovieButton = findViewById(R.id.add_movie_button);
+        mSearchForMovieButton = findViewById(R.id.search_this_movie_button);
+        mAddMovieButton = findViewById(R.id.add_movie_button);
+        mBackArrow = findViewById(R.id.search_back_arrow_imageview);
 
-
+        /**
+         * This wires up the search bar by getting all the movies and setting the movie titles
+         * in the adapter
+         */
         List<Movie> movies = mMovieDAO.getAllMovies();
         List<String> movieTitles = new ArrayList<>();
 
@@ -71,17 +96,8 @@ public class SearchActivity extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, movieTitles);
         mSearchBar.setAdapter(adapter);
 
-        mTitleTextView = findViewById(R.id.title_textview);
-        mYearTextView = findViewById(R.id.year_textview);
-        mGenretextView = findViewById(R.id.genre_textview);
-        mPlatformTextView = findViewById(R.id.platform_textview);
-        mAddMovieButton = findViewById(R.id.add_movie_button);
 
-
-
-
-
-        mSearchForMovieButton = findViewById(R.id.search_this_movie_button);
+        //Displays the movie info once the search button is hit
         mSearchForMovieButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -96,15 +112,13 @@ public class SearchActivity extends AppCompatActivity {
             }
         });
 
-        mAddMovieButton = findViewById(R.id.add_movie_button);
+        //Adds movie to user watchlist
         mAddMovieButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 addMovieToWatchlist();
             }
         });
-
-        mBackArrow = findViewById(R.id.search_back_arrow_imageview);
 
         mBackArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,6 +136,12 @@ public class SearchActivity extends AppCompatActivity {
                 .allowMainThreadQueries().build().getWatchlistDAO();
     }
 
+    /**
+     * This Initializes the list of movies for the search bar (if they aren't already there)
+     * Calls function from class MovieDataInit which has all the titles that
+     * will be available on app.
+     * If the movies
+     */
     private void checkForMovies(){
         List<Movie> movies = mMovieDAO.getAllMovies();
         if (movies.size() <= 0){
@@ -137,6 +157,10 @@ public class SearchActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Gets movie info from the search bar and gets the movie id from the title
+     * Inserts the movie into the watchlist using the movie id and userId(from prefreneces)
+     */
     private void addMovieToWatchlist(){
         Movie movie = mMovieDAO.getMovieByTitle(mSearchBar.getText().toString());
         int movieId = movie.getMovieId();

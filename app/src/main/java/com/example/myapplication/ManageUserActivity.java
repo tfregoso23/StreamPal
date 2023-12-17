@@ -18,16 +18,16 @@ import android.widget.Toast;
 
 import com.example.myapplication.db.AppDatabase;
 import com.example.myapplication.db.UserDAO;
-import com.example.myapplication.db.WatchlistDAO;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ManageUserActivity extends AppCompatActivity {
+    /**
+     * This class allows admins to search for users by username and
+     * allows them to delete users
+     */
     private UserDAO mUserDAO;
-    private WatchlistDAO mWatchlistDAO;
 
     private AutoCompleteTextView mUserSearchBar;
 
@@ -92,6 +92,7 @@ public class ManageUserActivity extends AppCompatActivity {
 
     }
 
+    //Wires up search bar with list of users
     private void wireupSearchBar(){
         List<User> users = mUserDAO.getAllUsers();
         List<String> usernames = new ArrayList<>();
@@ -104,6 +105,7 @@ public class ManageUserActivity extends AppCompatActivity {
         mUserSearchBar.setAdapter(adapter);
     }
 
+    //Displays User info once search button is hit
     private void displayUsername(User user){
         mUsernameTextview.setText(user.getUsername());
 
@@ -112,6 +114,7 @@ public class ManageUserActivity extends AppCompatActivity {
         mRemoveUserButton.setVisibility(View.VISIBLE);
     }
 
+    //Confirms admin wants to remove user and then deletes user
     private void showRemoveConfirmationDialog(User user) {
         AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
         alertBuilder.setMessage("Permanently delete user?");
@@ -119,8 +122,12 @@ public class ManageUserActivity extends AppCompatActivity {
         alertBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+                if (user != null) {
                 mUserDAO.delete(user);
-                Toast.makeText(ManageUserActivity.this,"User removed",Toast.LENGTH_SHORT).show();
+                Toast.makeText(ManageUserActivity.this, "User removed", Toast.LENGTH_SHORT).show();
+            }else  {
+                    Toast.makeText(ManageUserActivity.this, "User not found", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         alertBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {

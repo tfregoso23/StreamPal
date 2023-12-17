@@ -6,7 +6,6 @@ import androidx.room.Room;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,6 +16,12 @@ import com.example.myapplication.db.AppDatabase;
 import com.example.myapplication.db.UserDAO;
 
 public class SignupActivity extends AppCompatActivity {
+
+    /**
+     * This activity handles new users signing up for the app
+     * It verifies to make sure passwords match and checks and adds user to database
+     */
+
     EditText mNewUsernameField;
     EditText mNewPasswordField;
     EditText mConfirmPasswordField;
@@ -93,6 +98,7 @@ public class SignupActivity extends AppCompatActivity {
         return true;
     }
 
+    //Checks to make sure the username is unique and doesnt exist
     private boolean confirmUsername(String username) {
         User registeredUser = mUserDAO.getUserByUsername(username);
         if(registeredUser != null){
@@ -108,13 +114,8 @@ public class SignupActivity extends AppCompatActivity {
         mConfirmPassword = mConfirmPasswordField.getText().toString();
     }
     private void getDatabase() {
-        try {
-            Log.d("MainActivity3", "Initializing database");
             mUserDAO = Room.databaseBuilder(this, AppDatabase.class, AppDatabase.DB_NAME)
                     .allowMainThreadQueries().build().getUserDAO();
-        } catch (Exception e) {
-            Log.e("MainActivity2", "Error initializing database", e);
-        }
     }
     public static Intent intentFactory(Context context){
         Intent intent = new Intent(context, SignupActivity.class);

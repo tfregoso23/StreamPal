@@ -1,6 +1,8 @@
 package com.example.myapplication;
 
-import androidx.annotation.NonNull;
+/**
+ * Sets up Streaming platform enum as well as a way to get the name as a string
+ */
 
 public enum StreamingPlatform {
 

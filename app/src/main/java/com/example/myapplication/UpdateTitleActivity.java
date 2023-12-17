@@ -23,6 +23,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UpdateTitleActivity extends AppCompatActivity {
+    /**
+     * This activity allows admins to search for a movie
+     * in the database and update the streaming platform
+     * the movie is available on
+     */
 
     private MovieDAO mMovieDAO;
 
@@ -49,6 +54,8 @@ public class UpdateTitleActivity extends AppCompatActivity {
         getDatabase();
         wireupDisplay();
 
+
+        //This sets up the search bar
         List<Movie> movies = mMovieDAO.getAllMovies();
         List<String> movieTitles = new ArrayList<>();
 
@@ -69,6 +76,7 @@ public class UpdateTitleActivity extends AppCompatActivity {
         mUpdateTextview = findViewById(R.id.update_invisible_textview);
         mPlatformSpinner = findViewById(R.id.select_platform_update_spinner);
         mBackArrow = findViewById(R.id.updatetitle_back_arrow_imageview);
+
         checkForMovies();
         setUpSpinner();
 
@@ -138,6 +146,7 @@ public class UpdateTitleActivity extends AppCompatActivity {
         mPlatformSpinner.setVisibility(View.VISIBLE);
     }
 
+    //Sets up platform enum spinner
     private void setUpSpinner(){
         StreamingPlatform[] platforms = StreamingPlatform.values();
         ArrayAdapter<StreamingPlatform> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, platforms);

@@ -13,7 +13,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
+
 
 import com.example.myapplication.db.AppDatabase;
 import com.example.myapplication.db.WatchlistDAO;
@@ -21,6 +21,12 @@ import com.example.myapplication.db.WatchlistDAO;
 import java.util.List;
 
 public class WatchlistActivity extends AppCompatActivity {
+    /**
+     * This activity handles the users watchlist. Each movie that a user adds
+     * appears here. It has a recycler view that
+     * generates a card for each movie.(Details in WatchlistAdapter)
+     */
+
     private RecyclerView recyclerView;
     private WatchlistAdapter adapter;
 
@@ -30,16 +36,23 @@ public class WatchlistActivity extends AppCompatActivity {
 
     private ImageView mBackArrow;
 
-    private TextView mRemoveClickableTextview;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_watchlist);
 
-        getDatabase();
+        //Gets userId
+        SharedPreferences sharedPreferences = getSharedPreferences("com.example.myapplication.PREFERENCES_KEY", MODE_PRIVATE);
+        userId = sharedPreferences.getInt("com.example.myapplication.userIdKey", -1);
 
+        getDatabase();
+        wireupDisplay();
+
+    }
+
+    private void wireupDisplay() {
+        //Back arrow to leave activity
         mBackArrow = findViewById(R.id.watchlist_back_arrow_imageview);
         mBackArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,21 +61,19 @@ public class WatchlistActivity extends AppCompatActivity {
             }
         });
 
-
-
+        //Sets up recycler view
         recyclerView = findViewById(R.id.recyclerview_watchlist);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        SharedPreferences sharedPreferences = getSharedPreferences("com.example.myapplication.PREFERENCES_KEY", MODE_PRIVATE);
-        userId = sharedPreferences.getInt("com.example.myapplication.userIdKey", -1);
-
         fetchMovies(userId);
-
-
-
-
     }
 
+
+    /**
+     * Gets the list of movies associated with each user
+     * Sets uo the recycler view using custom adapter
+     * If you hit remove it calls confirmation dialouge
+     * @param userId
+     */
     private void fetchMovies(int userId) {
         List<Movie> watchlistMovies = mWatchlistDAO.getMoviesForUser(userId);
         adapter = new WatchlistAdapter(watchlistMovies);
@@ -76,11 +87,11 @@ public class WatchlistActivity extends AppCompatActivity {
         });
     }
 
-    private void getDatabase() {
-        mWatchlistDAO = Room.databaseBuilder(this, AppDatabase.class, AppDatabase.DB_NAME)
-                .allowMainThreadQueries().build().getWatchlistDAO();
-    }
 
+    /**
+     * Removes movie from watchlist and removes card from position
+     * @param position
+     */
     private void removeMovieFromWatchlist(int position) {
         Movie movieToRemove = adapter.getMovies().get(position);
 
@@ -90,12 +101,11 @@ public class WatchlistActivity extends AppCompatActivity {
         adapter.notifyItemRemoved(position);
     }
 
-    public static Intent intentFactory(Context context){
-        Intent intent = new Intent(context, WatchlistActivity.class);
-        return intent;
-    }
 
-
+    /**
+     * Shows confirmation dialouge to remove movie and calls removeFromWatchlist
+     * @param position
+     */
     private void showRemoveConfirmationDialog(final int position) {
         AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
         alertBuilder.setMessage("Remove movie?");
@@ -116,6 +126,17 @@ public class WatchlistActivity extends AppCompatActivity {
 
         AlertDialog dialog = alertBuilder.create();
         dialog.show();
+    }
+
+
+    private void getDatabase() {
+        mWatchlistDAO = Room.databaseBuilder(this, AppDatabase.class, AppDatabase.DB_NAME)
+                .allowMainThreadQueries().build().getWatchlistDAO();
+    }
+
+    public static Intent intentFactory(Context context){
+        Intent intent = new Intent(context, WatchlistActivity.class);
+        return intent;
     }
 
 }

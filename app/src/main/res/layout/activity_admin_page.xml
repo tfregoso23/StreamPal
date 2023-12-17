@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AdminPageActivity"
-    android:background="@color/ocean_blue">
+    android:background="@color/ocean_blue"
+    tools:context=".AdminPageActivity">
 
     <TextView
         android:id="@+id/welcome_admin_textview"
@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="88dp"
         android:gravity="center"
-        android:text="Welcome Admin"
+        android:text="@string/welcome_admin"
         android:textColor="@color/sea_green"
         android:textSize="50sp"
         android:textStyle="bold"
@@ -27,7 +27,7 @@
         android:layout_width="295dp"
         android:layout_height="77dp"
         android:layout_marginTop="68dp"
-        android:text="Add Title"
+        android:text="@string/add_title"
         android:textColor="@color/ocean_blue"
         android:textSize="35sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -39,7 +39,7 @@
         android:layout_width="295dp"
         android:layout_height="77dp"
         android:layout_marginTop="68dp"
-        android:text="Update Title"
+        android:text="@string/update_title"
         android:textColor="@color/ocean_blue"
         android:textSize="35sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -51,7 +51,7 @@
         android:layout_width="295dp"
         android:layout_height="77dp"
         android:layout_marginTop="68dp"
-        android:text="Manage Users"
+        android:text="@string/manage_users"
         android:textColor="@color/ocean_blue"
         android:textSize="35sp"
         app:layout_constraintEnd_toEndOf="parent"

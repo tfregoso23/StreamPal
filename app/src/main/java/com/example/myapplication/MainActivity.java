@@ -4,8 +4,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
-//import android.app.Activity;
-//import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -25,6 +23,11 @@ import com.example.myapplication.db.AppDatabase;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+    /**
+     * This is the main actvity
+     * It handles login and user authentication, as well as
+     * being the main landing page in the app
+     */
 
     private static final String USER_ID_KEY = "com.example.myapplication.userIdKey";
     private static final String PREFERENCES_KEY = "com.example.myapplication.PREFERENCES_KEY";
@@ -53,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
         loginUser(mUserId);
 
-
+        //Sets visibility of admin button
         if (mUser != null && mUser.isAdmin()) {
             mAdminButton.setVisibility(View.VISIBLE);
         } else {
@@ -72,6 +75,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void wireUpDisplay() {
         mLogoutButton = findViewById(R.id.logout_button);
+        mSearchButton = findViewById(R.id.search_movies_button);
+        mWatchlistButton = findViewById(R.id.watchlist_button);
+        mAdminButton = findViewById(R.id.admin_button);
 
         mLogoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,7 +87,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        mSearchButton = findViewById(R.id.search_movies_button);
         mSearchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -91,7 +96,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        mWatchlistButton = findViewById(R.id.watchlist_button);
         mWatchlistButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -101,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        mAdminButton = findViewById(R.id.admin_button);
+
         mAdminButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -145,23 +149,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
-    public static Intent intentFactory(Context context, int userId){
-        Intent intent = new Intent(context, MainActivity.class);
-        intent.putExtra(USER_ID_KEY, userId);
-
-        return intent;
-    }
-    private void getDatabase() {
-        try {
-            Log.d("MainActivity3", "Initializing database");
-            mUserDAO = Room.databaseBuilder(this, AppDatabase.class, AppDatabase.DB_NAME)
-                    .allowMainThreadQueries().build().getUserDAO();
-        } catch (Exception e) {
-            Log.e("MainActivity2", "Error initializing database", e);
-        }
-    }
-
     private void loginUser(int userId) {
         //check if userID is valid
         mUser = mUserDAO.getUserById(userId);
@@ -194,6 +181,7 @@ public class MainActivity extends AppCompatActivity {
         alertBuilder.create().show();
     }
 
+    //Keeps users preferences os if app closes user still exists
     private void addUserToPreference(int userId) {
         if (mPreferences == null) {
             getPrefs();
@@ -213,6 +201,18 @@ public class MainActivity extends AppCompatActivity {
 
     private void clearUserFromPref(){
         addUserToPreference(-1);
+    }
+
+    public static Intent intentFactory(Context context, int userId){
+        Intent intent = new Intent(context, MainActivity.class);
+        intent.putExtra(USER_ID_KEY, userId);
+
+        return intent;
+    }
+
+    private void getDatabase() {
+        mUserDAO = Room.databaseBuilder(this, AppDatabase.class, AppDatabase.DB_NAME)
+                .allowMainThreadQueries().build().getUserDAO();
     }
 
 }

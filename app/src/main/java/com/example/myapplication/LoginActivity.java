@@ -6,7 +6,6 @@ import androidx.room.Room;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,13 +17,17 @@ import com.example.myapplication.db.UserDAO;
 
 public class LoginActivity extends AppCompatActivity {
 
+    /**
+     * This handles the login page activity
+     */
+
+
     private EditText mUsernameField;
     private EditText mPasswordField;
+
     private TextView mSignUpClickText;
 
     private Button mLoginButton;
-
-
 
     private UserDAO mUserDAO;
 
@@ -80,10 +83,10 @@ public class LoginActivity extends AppCompatActivity {
         return mUser.getPassword().equals(mPassword);
     }
 
+    //Gets values entered into edit text to check for users
     private void getValuesFromDisplay() {
         mUsername = mUsernameField.getText().toString();
         mPassword = mPasswordField.getText().toString();
-
     }
 
     private boolean checkForUserInDatabase(){
@@ -96,18 +99,12 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void getDatabase(){
-        try {
-            Log.d("MainActivity", "Initializing database");
             mUserDAO = Room.databaseBuilder(this, AppDatabase.class, AppDatabase.DB_NAME)
                     .allowMainThreadQueries().build().getUserDAO();
-        } catch (Exception e) {
-            Log.e("MainActivity", "Error initializing database", e);
-        }
     }
 
     public static Intent intentFactory(Context context){
         Intent intent = new Intent(context, LoginActivity.class);
-
         return intent;
     }
 }

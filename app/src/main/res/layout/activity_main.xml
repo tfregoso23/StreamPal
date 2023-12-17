@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:background="@color/ocean_blue">
+    android:background="@color/ocean_blue"
+    tools:context=".MainActivity">
 
 
     <TextView
@@ -86,7 +86,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.916"
         app:layout_constraintStart_toEndOf="@+id/logout_button" />
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

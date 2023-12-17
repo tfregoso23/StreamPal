@@ -17,16 +17,17 @@
         android:textColor="@color/sea_green"
         android:textSize="40sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/enter_username_edittext"
-        android:layout_width="320dp"
+        android:layout_width="300dp"
         android:layout_height="77dp"
         android:layout_marginTop="44dp"
         android:background="@color/white"
         android:hint="@string/enter_username"
+        android:importantForAutofill="no"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.505"
@@ -35,11 +36,12 @@
 
     <EditText
         android:id="@+id/enter_password_edittext"
-        android:layout_width="320dp"
+        android:layout_width="300dp"
         android:layout_height="77dp"
         android:layout_marginTop="56dp"
         android:background="@color/white"
         android:hint="@string/enter_password"
+        android:importantForAutofill="no"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,11 +49,12 @@
 
     <EditText
         android:id="@+id/confirm_password_edittext"
-        android:layout_width="320dp"
+        android:layout_width="300dp"
         android:layout_height="77dp"
         android:layout_marginTop="56dp"
         android:background="@color/white"
         android:hint="@string/confirm_password"
+        android:importantForAutofill="no"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

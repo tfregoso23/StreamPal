@@ -10,12 +10,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
 public class WatchlistAdapter extends RecyclerView.Adapter<WatchlistAdapter.ViewHolder> {
+
+    /**
+     * Sets up the wathclist adapter using cards I made in xml
+     */
 
     private List<Movie> movies;
 
@@ -47,6 +50,8 @@ public class WatchlistAdapter extends RecyclerView.Adapter<WatchlistAdapter.View
     public void onBindViewHolder(ViewHolder holder, int position) {
         Movie movie = movies.get(position);
         holder.textViewMovieTitle.setText(movie.getMovieTitle());
+
+        //Makes parts of the string bold
 
         SpannableString spannableGenre = new SpannableString("Genre: " + movie.getMovieGenre());
         spannableGenre.setSpan(new StyleSpan(Typeface.BOLD), 0, 6, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE); // "Genre: " is bold

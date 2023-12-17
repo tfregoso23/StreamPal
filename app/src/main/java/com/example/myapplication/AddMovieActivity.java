@@ -20,6 +20,12 @@ import com.example.myapplication.db.MovieDAO;
 
 public class AddMovieActivity extends AppCompatActivity {
 
+    /**
+     * This activity allows admins to enter movie info and add
+     * the movie to the overall list of movies.
+     * Verifies to make sure movie already isn't in database
+     */
+
     private Spinner mPlatfromSpinner;
 
     private MovieDAO mMovieDAO;
@@ -42,9 +48,6 @@ public class AddMovieActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_movie);
         getDatabase();
         wireupDisplay();
-
-
-
     }
 
     private void wireupDisplay(){
@@ -54,8 +57,8 @@ public class AddMovieActivity extends AppCompatActivity {
         mAddMovieButton = findViewById(R.id.addtitle_addmovie_button);
         mBackButton = findViewById(R.id.addtitle_back_arrow_imageview);
         mPlatfromSpinner = findViewById(R.id.select_platform_spinner);
-        setUpSpinner();
 
+        setUpSpinner();
 
         mBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,7 +66,6 @@ public class AddMovieActivity extends AppCompatActivity {
                 finish();
             }
         });
-
 
         mAddMovieButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,6 +81,9 @@ public class AddMovieActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Sets up spinner to display lists of Platform(enums) to choose from when adding movie
+     */
     private void setUpSpinner(){
         StreamingPlatform[] platforms = StreamingPlatform.values();
         ArrayAdapter<StreamingPlatform> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, platforms);
@@ -100,12 +105,21 @@ public class AddMovieActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Gets all values from display so it can be entered as new movie
+     */
+
     private void getValuesFromDisplay(){
         mMovieTitle = mEnteredTitle.getText().toString();
         mMovieYear = Integer.parseInt(mEnteredYear.getText().toString());
         mMovieGenre = mEnteredGenre.getText().toString();
     }
 
+    /**
+     * Verifies movie doesnt exist in database by referencing usernames
+     * @param movieTitle
+     * @return
+     */
     private boolean confirmMovie(String movieTitle){
         Movie registeredMovie = mMovieDAO.getMovieByTitle(movieTitle);
         if(registeredMovie != null){
@@ -115,6 +129,9 @@ public class AddMovieActivity extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * Adds new movie into database
+     */
     private void addMovieToDatabase(){
         Movie movie = new Movie(mMovieTitle,mMovieYear,mMovieGenre,mMoviePlatform);
         mMovieDAO.insert(movie);

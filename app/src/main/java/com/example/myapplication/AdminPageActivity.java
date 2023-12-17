@@ -11,6 +11,11 @@ import android.widget.ImageView;
 
 public class AdminPageActivity extends AppCompatActivity {
 
+    /**
+     * Sets up the admin landing page that allows admins to
+     * preform different activities
+     */
+
     private ImageView mBackArrow;
 
     private Button mAddTitleButton;
@@ -24,10 +29,9 @@ public class AdminPageActivity extends AppCompatActivity {
 
         wireupDisplay();
 
-
-
     }
 
+    //Mostly sets up navigation
     private void wireupDisplay(){
         mBackArrow = findViewById(R.id.admin_backarrow_imageview);
         mAddTitleButton = findViewById(R.id.add_title_button);

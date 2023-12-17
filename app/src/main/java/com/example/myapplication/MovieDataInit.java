@@ -3,6 +3,9 @@ package com.example.myapplication;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * This sets up the array list of all initial movies for when the app launches
+ */
 public class MovieDataInit {
     public static List<Movie> getInitMovies(){
         return Arrays.asList(
